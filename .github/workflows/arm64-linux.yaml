@@ -1,6 +1,9 @@
 name: Build aarch64
 
 on:
+  push:
+    branches:
+      - ci/arm64-android
   workflow_dispatch:
 
 env:
@@ -38,7 +41,7 @@ jobs:
           CC: clang-12
           CXX: clang++-12
           VCPKG_KEEP_ENV_VARS: "CC;CXX"
-        run: python3 build.py --triple=arm64-android --lto --enable_unit_test --enable_integration_test --vcpkg_root=${{ github.workspace }}/vcpkg --build_root=./build
+        run: python3 build.py --triple=arm64-linux --lto --enable_unit_test --enable_integration_test --vcpkg_root=${{ github.workspace }}/vcpkg --build_root=./build
       - name: upload
         uses: actions/upload-artifact@v1
         with:
