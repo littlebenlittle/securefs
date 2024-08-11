@@ -22,6 +22,8 @@ jobs:
       - name: install
         run: sudo apt-get install fuse libfuse-dev clang-12
       - name: Get latest Github release of vcpkg
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         uses: cardinalby/git-get-release-action@v1
         id: get-latest-vcpkg-release
         with:
